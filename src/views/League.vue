@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <div class="main ">
+        <div class="main">
             <div class="section" v-if="league.length <= 0">
                 <div class="md-layout md-gutter md-alignment-center">
                     <h2>Espere un momento por favor </h2>                                            
@@ -34,13 +34,22 @@
                                     <img class="logo" :src="team.team.crestUrl" :alt="team.team.name">
                                 <router-link :to="'/team/'+team.team.id">{{team.team.name}}</router-link>
                             </md-table-cell>                            
-                            <md-table-cell>{{team.points}}</md-table-cell>
+                            <md-table-cell md-numeric>{{team.points}}</md-table-cell>
                             <md-table-cell>{{team.playedGames}}</md-table-cell>
                             <md-table-cell>{{team.goalsFor}}</md-table-cell>
                             <md-table-cell>{{team.goalsAgainst}}</md-table-cell>
                         </md-table-row>
                     </md-table>                    
                 </div>
+
+                <div class="md-layout md-alignment-center">
+
+                    <router-link class="md-primary md-round" to="/"> 
+                        <md-button class="md-primary md-round">Volver al Menú</md-button>
+                    </router-link>
+
+                </div>
+
             </div>          
 
         
@@ -87,7 +96,7 @@ export default {
             competition_data : ''           
         }
     },
-    created(){
+    mounted(){
         this.data = this.$route.params.id;
         this.getTeam();
      

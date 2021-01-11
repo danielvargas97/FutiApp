@@ -8,6 +8,7 @@ import MainNavbar from "./layout/MainNavbar.vue";
 import MainFooter from "./layout/MainFooter.vue";
 import League from './views/League.vue';
 import Team from './views/Team.vue';
+import Home from './views/Home.vue';
 Vue.use(Router);
 
 import VueMeta from 'vue-meta';
@@ -18,8 +19,8 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "index",
-      components: { default: Index, header: MainNavbar, footer: MainFooter },
+      name: "home",
+      components: { default: Home, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: "black" }
@@ -68,6 +69,15 @@ export default new Router({
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: "black" }
       }      
+    },
+    {
+      path: "/dev",
+      name: "index",
+      components: { default: Index, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: "black" }
+      }
     }        
    
   ],

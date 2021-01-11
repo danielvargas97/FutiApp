@@ -14,11 +14,11 @@
                 <div class="md-layout md-alignment-center">                    
                     <img :src="team.crestUrl" class="md-logo" />
                 </div>
-                <div class="md-layout md-alignment-center">                                        
-                    <h1>{{team.name}}</h1>                                 
+                <div class="text-center">                                        
+                    <h1>{{team.name}}, {{team.founded}}</h1>                                 
                 </div>
 
-                <div class="md-layout md-alignment-center">                                        
+                <div class="text-center">                                        
                     <h2>{{team.venue}}</h2>    
                 </div>
 
@@ -28,43 +28,14 @@
                     <md-table class="" v-model="squad">
                         <md-table-row>
                             
-                            <md-table-head md-numeric style="padding: 1em; margin-bottom: 50%">                                
-                                <md-button class="md-simple md-just-icon md-round" @click="sort('position',sort_position)">
+                            <md-table-head md-numeric style="padding: 1em 1em auto auto" v-for="(tableHeader,index) in header" :key="index">
+                                <md-button class="md-simple md-just-icon md-round" @click="sort(tableHeader.name,sort_position)">
                                     <i class="material-icons">arrow_circle_up</i>
                                 </md-button>
-                                <md-button class="md-simple md-just-icon md-round" @click="sort('position',!sort_position)">
+                                <md-button class="md-simple md-just-icon md-round" @click="sort(tableHeader.name,!sort_position)">
                                     <i class="material-icons">arrow_circle_down</i>
                                 </md-button>                                
-                                Posición
-                            </md-table-head>
-                            <md-table-head style="padding: 1em; margin-bottom: 50%">Nacionalidad</md-table-head>
-                            <md-table-head style="padding: 1em; margin-bottom: 50%" >
-                                
-                                <md-button class="md-simple md-just-icon md-round" @click="sort('name',sort_name)">
-                                    <i class="material-icons">arrow_circle_up</i>    
-                                </md-button>
-                                <md-button class="md-simple md-just-icon md-round" @click="sort('name',!sort_name)">
-                                    <i class="material-icons">arrow_circle_down</i>    
-                                </md-button>                                  
-                                Nombre                              
-                            </md-table-head>
-                            <md-table-head style="padding: 1em; margin-bottom: 50%">                                
-                                <md-button class="md-simple md-just-icon md-round" @click="sort('dateOfBirth',!sort_birthdate)">
-                                    <i class="material-icons">arrow_circle_up</i>
-                                </md-button>
-                                <md-button class="md-simple md-just-icon md-round" @click="sort('dateOfBirth',sort_birthdate)">
-                                    <i class="material-icons">arrow_circle_down</i>
-                                </md-button>                                                                  
-                                Fecha Nacimiento
-                            </md-table-head>
-                            <md-table-head style="padding: 1em; margin-bottom: 50%">
-                                <md-button class="md-simple md-just-icon md-round" @click="sort('dateOfBirth',!sort_birthdate)">
-                                    <i class="material-icons">arrow_circle_up</i>
-                                </md-button>
-                                <md-button class="md-simple md-just-icon md-round" @click="sort('dateOfBirth',sort_birthdate)">
-                                    <i class="material-icons">arrow_circle_down</i>
-                                </md-button>                                  
-                                Edad
+                                {{tableHeader.sp}}
                             </md-table-head>
 
                         </md-table-row>
@@ -76,10 +47,7 @@
                             <md-table-cell>                                
                                 {{player.name}}
                             </md-table-cell>
-                            <md-table-cell>{{formatedDate(player.dateOfBirth)}}</md-table-cell>
-                            <md-table-cell>                                
-                                {{getAge(player.dateOfBirth)}}
-                            </md-table-cell>
+                            <md-table-cell>{{formatedDate(player.dateOfBirth)}} ({{getAge(player.dateOfBirth)}})</md-table-cell>
                         </md-table-row>
                     </md-table>                    
                 </div>
@@ -223,7 +191,26 @@ export default {
         return {
             data : '',
             team : '',    
-            squad : '',                 
+            squad : '',        
+            
+            header : [
+                {
+                    name : "position",
+                    sp : "Posición"
+                },
+                {
+                    name : "nationality",
+                    sp : "Nacionalidad"                  
+                },
+                {
+                    name : "name",
+                    sp : "Nombre"                                      
+                },
+                {
+                    name : "dateOfBirth",
+                    sp : "Fecha de nacimiento"                                        
+                },                
+            ],
             
             sort_name : false,
             sort_position : false,
@@ -292,7 +279,7 @@ export default {
                 "dialling_code": "+61"
             },
             {
-                "country_code": "AI",
+                "country_code": "AT",
                 "country_name": "Austria",
                 "dialling_code": "+43"
             },
@@ -732,7 +719,7 @@ export default {
             },
             {
                 "country_code": "IE",
-                "country_name": "Ireland",
+                "country_name": "Republic of Ireland",
                 "dialling_code": "+353"
             },
             {
@@ -1282,7 +1269,7 @@ export default {
             },
             {
                 "country_code": "GM",
-                "country_name": "The Gambia",
+                "country_name": "Gambia",
                 "dialling_code": "+220"
             },
             {
